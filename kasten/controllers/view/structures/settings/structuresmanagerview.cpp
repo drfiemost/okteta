@@ -38,7 +38,9 @@
 #include <KPushButton>
 #include <KDialog>
 //KNS
+#ifdef ENABLE_KNEWSTUFF3
 #include <KNS3/KNewStuffButton>
+#endif
 // Qt
 #include <QtGui/QListWidgetItem>
 #include <QtGui/QLayout>
@@ -62,18 +64,18 @@ StructuresManagerView::StructuresManagerView(Kasten2::StructTool* tool, QWidget*
 
     QHBoxLayout* buttonsLayout = new QHBoxLayout();
     pageLayout->addLayout(buttonsLayout);
-
+#ifdef ENABLE_KNEWSTUFF3
     mGetNewStructuresButton = new KNS3::Button(i18n("Get New Structures..."),
                                                QLatin1String("okteta-structures.knsrc"), this);
     connect(mGetNewStructuresButton, SIGNAL(dialogFinished(KNS3::Entry::List)),
             SLOT(onGetNewStructuresClicked(KNS3::Entry::List)));
     buttonsLayout->addWidget(mGetNewStructuresButton);
-
+#endif
     mAdvancedSelectionButton = new KPushButton(KIcon(QLatin1String("configure")), i18n("Advanced Selection..."), this);
     connect(mAdvancedSelectionButton, SIGNAL(clicked()), SLOT(advancedSelection()));
     buttonsLayout->addWidget(mAdvancedSelectionButton);
 }
-
+#ifdef ENABLE_KNEWSTUFF3
 void StructuresManagerView::onGetNewStructuresClicked(const KNS3::Entry::List& changedEntries)
 {
     foreach (const KNS3::Entry& e, changedEntries)
@@ -97,7 +99,7 @@ void StructuresManagerView::onGetNewStructuresClicked(const KNS3::Entry::List& c
         rebuildPluginSelectorEntries();
     }
 }
-
+#endif
 QStringList StructuresManagerView::values()
 {
     return mSelectedStructures;

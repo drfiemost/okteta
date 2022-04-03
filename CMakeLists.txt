@@ -9,6 +9,17 @@ include(MacroLibrary)
 macro_optional_find_package( QCA2 )
 macro_log_feature( QCA2_FOUND "QCA2" "Qt Cryptographic Architecture" "http://delta.affinix.com/qca" FALSE "2.0.0" "Needed for most of the algorithms of the checksum tool." )
 
+macro_optional_find_package(LibAttica)
+set_package_properties(LibAttica PROPERTIES DESCRIPTION "A library to access Open Collaboration Service providers"
+                       URL "https://projects.kde.org/attica"
+                       TYPE OPTIONAL
+                       PURPOSE "Attica is needed for the Get Hot New Stuff support in dolphin"
+                      )
+
+if(LIBATTICA_FOUND)
+    add_definitions(-DENABLE_KNEWSTUFF3)
+endif(LIBATTICA_FOUND)
+
 add_definitions( ${QT_DEFINITIONS} ${KDE4_DEFINITIONS})
 include_directories(
     ${CMAKE_SOURCE_DIR}

@@ -449,7 +449,6 @@ target_link_libraries ( structures-static
   ${QT_QTXML_LIBRARY}
   ${QT_QTTEST_LIBRARY}
   ${KDE4_KDEUI_LIBS}
-  ${KDE4_KNEWSTUFF3_LIBS}
   ${KDE4_KCMUTILS_LIBS}
   ${oktetakastencore_LIB}
   ${oktetakastengui_LIB}
@@ -457,6 +456,11 @@ target_link_libraries ( structures-static
   ${KASTENCORE_LIBS}
   #${KASTENGUI_LIBS}
 )
+if(LIBATTICA_FOUND)
+target_link_libraries ( structures-static
+  ${KDE4_KNEWSTUFF3_LIBS}
+)
+endif(LIBATTICA_FOUND)
 set_target_properties( structures-static PROPERTIES COMPILE_FLAGS -DOKTETAKASTENCONTROLLERS_EXPORT=)
 
 macro(structures_unit_test _testtarget _testname)
@@ -559,11 +563,15 @@ target_link_libraries( ${oktetakastencontrollers_LIB}
   ${oktetacore_LIB}
   ${KDE4_KIO_LIBS}
   ${KDE4_KDEUI_LIBS}
-  ${KDE4_KNEWSTUFF3_LIBS}
   ${KDE4_KCMUTILS_LIBS}
   ${QT_QTSCRIPT_LIBRARY}
   ${QT_QTSCRIPTTOOLS_LIBRARY}
 )
+if(LIBATTICA_FOUND)
+target_link_libraries ( ${oktetakastencontrollers_LIB}
+  ${KDE4_KNEWSTUFF3_LIBS}
+)
+endif(LIBATTICA_FOUND)
 if( QCA2_FOUND )
   target_link_libraries( ${oktetakastencontrollers_LIB} ${QCA2_LIBRARIES} )
 endif( QCA2_FOUND )
