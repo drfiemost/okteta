@@ -62,6 +62,7 @@ class CoordRange : public KDE::KBaseCoordRange
       */
     CoordRange( const LinePositionRange& posRange, const LineRange& lineRange );
     CoordRange();
+    CoordRange(const CoordRange&) = default;
     ~CoordRange();
 
   public:

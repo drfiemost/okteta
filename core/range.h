@@ -40,10 +40,11 @@ class Range
   public:
     Range( T S, T E ) : Start( S ), End( E )  {}
     Range() : Start( null() ), End( null() )  {}
+    Range(const Range &R) : Start(R.Start), End(R.End) {}
     ~Range() {}
 
   public:
-    Range &operator=( const Range &R ) { Start = R.Start; End = R.End; return *this; }
+    Range &operator=( const Range &R ) = default;
 
   public:
     bool operator==( const Range &R ) const
