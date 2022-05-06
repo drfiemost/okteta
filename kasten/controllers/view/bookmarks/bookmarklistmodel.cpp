@@ -90,6 +90,7 @@ QVariant BookmarkListModel::data( const QModelIndex& index, int role ) const
             default:
                 ;
         }
+        [[fallthrough]];
     }
     case Qt::EditRole:
     {
