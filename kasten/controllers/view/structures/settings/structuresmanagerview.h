@@ -26,20 +26,10 @@
 
 // Qt
 #include <QtGui/QWidget>
-#ifdef ENABLE_KNEWSTUFF3
-#include <KNS3/Entry>
-#endif
 
 class StructureAddRemoveWidget;
 class KPushButton;
 class KPluginSelector;
-
-#ifdef ENABLE_KNEWSTUFF3
-namespace KNS3
-{
-class Button;
-}
-#endif
 
 namespace Kasten2
 {
@@ -59,9 +49,6 @@ public:
     QStringList values();
 
 protected Q_SLOTS:
-#ifdef ENABLE_KNEWSTUFF3
-    void onGetNewStructuresClicked(const KNS3::Entry::List& changedEntries);
-#endif
     void onPluginSelectorChange(bool change);
     void advancedSelection();
 Q_SIGNALS:
@@ -73,9 +60,6 @@ private:
 private:
     Kasten2::StructTool* mTool;
     QStringList mSelectedStructures;
-#ifdef ENABLE_KNEWSTUFF3
-    KNS3::Button* mGetNewStructuresButton;
-#endif
     KPushButton* mAdvancedSelectionButton;
     KPluginSelector* mStructuresSelector;
     bool mRebuildingPluginsList :1;
