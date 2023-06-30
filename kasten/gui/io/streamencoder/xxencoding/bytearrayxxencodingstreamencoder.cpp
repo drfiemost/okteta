@@ -87,7 +87,7 @@ bool ByteArrayXxencodingStreamEncoder::encodeDataToStream( QIODevice* device,
     // prepare
     InputByteIndex inputByteIndex = FirstByte;
     int inputGroupsPerLine = 0;
-    unsigned char bitsFromLastByte;
+    unsigned char bitsFromLastByte = 0;
 
     // header
     textStream << header << " 644 " << mSettings.fileName.toLatin1();

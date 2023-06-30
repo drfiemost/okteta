@@ -76,7 +76,7 @@ bool ByteArrayBase64StreamEncoder::encodeDataToStream( QIODevice* device,
     // prepare
     InputByteIndex inputByteIndex = FirstByte;
     int outputGroupsPerLine = 0;
-    unsigned char bitsFromLastByte;
+    unsigned char bitsFromLastByte = 0;
 
     for( Okteta::Address i=range.start(); i<=range.end(); ++i )
     {

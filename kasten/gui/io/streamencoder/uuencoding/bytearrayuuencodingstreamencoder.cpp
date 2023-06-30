@@ -101,7 +101,7 @@ bool ByteArrayUuencodingStreamEncoder::encodeDataToStream( QIODevice* device,
     // prepare
     InputByteIndex inputByteIndex = FirstByte;
     int inputGroupsPerLine = 0;
-    unsigned char bitsFromLastByte;
+    unsigned char bitsFromLastByte = 0;
 
     const UumapEncodeData* encodeData =
         (mSettings.algorithmId == UuencodingStreamEncoderSettings::HistoricalId ) ?
