@@ -120,8 +120,9 @@ void PrimitiveDataInformationTest::initTestCase()
     boolBitfield = new BoolBitfieldDataInformation(QLatin1String("bitfield"), 24);
     unsignedBitfield = new UnsignedBitfieldDataInformation(QLatin1String("bitfield"), 24);
     signedBitfield = new SignedBitfieldDataInformation(QLatin1String("bitfield"), 24);
-    QTextCodec *codec = QTextCodec::codecForName("UTF-8");
-    QTextCodec::setCodecForCStrings(codec);
+    // TODO: this relies on strings defaulting to utf8, so disable this for now.
+    //QTextCodec *codec = QTextCodec::codecForName("UTF-8");
+    //QTextCodec::setCodecForCStrings(codec);
 }
 
 namespace
