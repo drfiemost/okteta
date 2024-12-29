@@ -54,7 +54,7 @@ void ToggleButtonPrivate::setOtherState( const KIcon& icon, const QString& text,
 
         // TODO: this breaks on new font (size) or style change
         // better would be to reimplement sizeHint()
-        p->setFixedWidth( qMax(currentTextWidth,otherTextWidth) );
+        p->setFixedWidth( std::max(currentTextWidth,otherTextWidth) );
     }
 }
 

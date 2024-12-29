@@ -35,7 +35,7 @@ BitCount32 UnionDataInformation::size() const
     BitCount32 size = 0;
     for (int i = 0; i < mChildren.size(); i++)
     {
-        size = qMax(size, mChildren.at(i)->size());
+        size = std::max(size, mChildren.at(i)->size());
     }
     return size;
 }

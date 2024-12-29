@@ -43,7 +43,7 @@ QString SIntDataInformationMethods<T>::staticValueString(T val, int base)
     if (val == std::numeric_limits<T>::min())
         num = QString::number(typename QIntegerForSizeof<T>::Unsigned(val), base);
     else if (val < 0)
-        num = QString::number(qAbs(val), base);
+        num = QString::number(std::abs(val), base);
     else
         num = QString::number(val, base);
     //TODO non decimal negative values as unsigned? probably add option

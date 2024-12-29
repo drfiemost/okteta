@@ -91,7 +91,7 @@ inline BitCount32 AbstractBitfieldDataInformation::width() const
 inline void AbstractBitfieldDataInformation::setWidth(BitCount32 newWidth)
 {
     Q_ASSERT(newWidth > 0 && newWidth <= 64);
-    mWidth = qMin(newWidth, BitCount32(64u)); //maximum width is 64 bits
+    mWidth = std::min(newWidth, BitCount32(64u)); //maximum width is 64 bits
 }
 
 inline bool AbstractBitfieldDataInformation::isBitfield() const

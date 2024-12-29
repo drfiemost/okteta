@@ -143,7 +143,7 @@ void ByteTableView::resizeColumnsWidth()
         const QModelIndex index = mTool->byteTableModel()->index( 0, i );
         const int indexWidthHint = mByteTableView->sizeHintForIndex( index ).width();
         const int headerWidthHint = header->sectionSizeHint( i );
-        header->resizeSection(i, qMax( indexWidthHint, headerWidthHint) );
+        header->resizeSection(i, std::max( indexWidthHint, headerWidthHint) );
     }
 }
 

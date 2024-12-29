@@ -177,7 +177,7 @@ bool StructTool::setData(const QVariant& value, int role, DataInformation* item,
     d->mWritingData = true;
     bool ret = false;
     BitCount64 position = item->positionInFile(structureStart);
-    const quint64 remainingBits = qMax(d->mByteArrayModel->size() * 8 - qint64(position), qint64(0));
+    const quint64 remainingBits = std::max(d->mByteArrayModel->size() * 8 - qint64(position), qint64(0));
     quint8 bitOffs = position % 8;
     ret = item->setData(value, d->mByteArrayModel, Okteta::Address(position / 8), remainingBits, bitOffs);
     d->mWritingData = false; //finished
@@ -340,7 +340,7 @@ void StructTool::mark(const QModelIndex& idx)
     //FIXME support marking of partial bytes
     int length = data->size() / 8;
     const int maxLen = d->mByteArrayModel->size() - baseAddress;
-    length = qMin(length, maxLen);
+    length = std::min(length, maxLen);
     const Okteta::Address startOffset = Okteta::Address(data->positionInFile(baseAddress) / 8);
     const Okteta::AddressRange markingRange = Okteta::AddressRange::fromWidth(startOffset, length);
     d->mByteArrayView->setMarking(markingRange, true);

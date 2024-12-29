@@ -92,7 +92,7 @@ bool ByteArrayXxencodingStreamEncoder::encodeDataToStream( QIODevice* device,
     // header
     textStream << header << " 644 " << mSettings.fileName.toLatin1();
 
-    const int firstLineLength = qMin( range.width(), xxInputLineLength );
+    const int firstLineLength = std::min( range.width(), xxInputLineLength );
     if( firstLineLength > 0 )
     {
         textStream << '\n';
@@ -129,7 +129,7 @@ bool ByteArrayXxencodingStreamEncoder::encodeDataToStream( QIODevice* device,
             if( inputGroupsPerLine >= maxXxInputGroupsPerLine && i<range.end() )
             {
                 const int remainsCount = range.end() - i;
-                const int nextLineLength = qMin( remainsCount, xxInputLineLength );
+                const int nextLineLength = std::min( remainsCount, xxInputLineLength );
                 textStream << '\n';
                 textStream << xxmapByte( nextLineLength );
                 inputGroupsPerLine = 0;

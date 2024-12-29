@@ -265,7 +265,7 @@ void ScriptClassesTest::checkProperties(const QVector<PropertyPair>& expected,
     data->topLevelDataInformation()->scriptHandler()->handlerInfo()->setMode(ScriptHandlerInfo::None);
     std::sort(foundProperties.begin(), foundProperties.end());
     if (foundProperties.size() != expected.size()) {
-        for (int i = 0; i < qMin(foundProperties.size(), expected.size()); ++i)
+        for (int i = 0; i < std::min(foundProperties.size(), expected.size()); ++i)
         {
             if (foundProperties.at(i) != expected.at(i))
                 qWarning() << tag << ":" << foundProperties.at(i) << ", but expected:" << expected.at(i);

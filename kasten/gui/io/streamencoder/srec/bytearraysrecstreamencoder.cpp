@@ -157,7 +157,7 @@ bool ByteArraySRecStreamEncoder::encodeDataToStream( QIODevice* device,
 
     const Okteta::Coord startCoord = layout.coordOfIndex( range.start() );
     const int lastLinePosition = layout.lastLinePosition( startCoord.line() );
-    const int dataPerLineCount = qMin( byteArrayView->noOfBytesPerLine(), maxDataPerLineCount );
+    const int dataPerLineCount = std::min( byteArrayView->noOfBytesPerLine(), maxDataPerLineCount );
     const RecordType dataSequenceType =
         static_cast<RecordType>( DataSequence4B - mSettings.addressSizeId );
     const RecordType endOfBlockType =
@@ -168,7 +168,7 @@ bool ByteArraySRecStreamEncoder::encodeDataToStream( QIODevice* device,
     unsigned char* const lineData = &line[dataLineOffset];
     const int firstDataEnd = lastLinePosition - startCoord.pos() + 1;
     int d = 0;
-    int nextDataEnd = qMin( firstDataEnd, dataPerLineCount );
+    int nextDataEnd = std::min( firstDataEnd, dataPerLineCount );
     Okteta::Address recordOffset = range.start();
     int recordCount = 0;
 
@@ -193,7 +193,7 @@ bool ByteArraySRecStreamEncoder::encodeDataToStream( QIODevice* device,
             ++recordCount;
             recordOffset = i;
             d = 0;
-            nextDataEnd = qMin( range.end()-i+1, dataPerLineCount );
+            nextDataEnd = std::min( range.end()-i+1, dataPerLineCount );
         }
     }
 

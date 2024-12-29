@@ -55,7 +55,7 @@ qint64 PrimitiveArrayData<type>::readData(Okteta::AbstractByteArrayModel* input,
     //therefore we use std::numeric_limits::max()
     quint32 maxRemaining32 = (maxRemaining > std::numeric_limits<quint32>::max()
             ? std::numeric_limits<quint32>::max() : quint32(maxRemaining));
-    const quint32 maxNumItems = qMin(this->length(), maxRemaining32);
+    const quint32 maxNumItems = std::min(this->length(), maxRemaining32);
     if (maxNumItems == 0)
         return -1; //reached EOF
     const QSysInfo::Endian byteOrder = AbstractArrayData::mParent->effectiveByteOrder();

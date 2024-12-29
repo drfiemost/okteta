@@ -305,7 +305,7 @@ QSize ByteArrayRowViewPrivate::minimumSizeHint() const
         q->lineHeight()
         + q->noOfLines()>1? q->style()->pixelMetric(QStyle::PM_ScrollBarExtent):0;
 
-    return QSize( qMin(minWidth,100), qMin(minHeight,100) );
+    return QSize( std::min(minWidth,100), std::min(minHeight,100) );
 }
 
 
@@ -629,7 +629,7 @@ void ByteArrayRowViewPrivate::createCursorPixmaps()
     PixelX cursorW;
     if( isCursorBehind() )
     {
-        cursorX = qMax( 0, mCursorPixmaps->onPixmap().width()-InsertCursorWidth );
+        cursorX = std::max( 0, mCursorPixmaps->onPixmap().width()-InsertCursorWidth );
         cursorW = InsertCursorWidth;
     }
     else
