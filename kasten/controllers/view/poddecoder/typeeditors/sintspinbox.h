@@ -113,7 +113,7 @@ inline void SIntSpinBox::setRange( qint64 minimum, qint64 maximum )
 
 inline void SIntSpinBox::setBase( int base )
 {
-    base = qBound( 2, base, 36 );
+    base = std::clamp( base, 2, 36 );
 
     if( mBase == base )
         return;

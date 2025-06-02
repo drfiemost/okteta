@@ -108,7 +108,7 @@ inline void UIntSpinBox::setValue( quint64 value )
 
 inline void UIntSpinBox::setBase( int base )
 {
-    base = qBound( 2, base, 36 );
+    base = std::clamp( base, 2, 36 );
 
     if( mBase == base )
         return;
