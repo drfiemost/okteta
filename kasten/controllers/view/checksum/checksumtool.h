@@ -25,7 +25,6 @@
 
 // lib
 #include "oktetakastencontrollers_export.h"
-#include <config-qca2.h>
 // Kasten core
 #include <abstracttool.h>
 // Okteta core
@@ -36,9 +35,6 @@ class AbstractByteArrayChecksumAlgorithm;
 
 namespace Okteta {
 class AbstractByteArrayModel;
-}
-namespace QCA {
-class Initializer;
 }
 
 
@@ -100,9 +96,6 @@ class OKTETAKASTENCONTROLLERS_EXPORT ChecksumTool : public AbstractTool
 
   private: // settings
     QList<AbstractByteArrayChecksumAlgorithm*> mAlgorithmList;
-#ifdef HAVE_QCA2
-    QCA::Initializer* mQcaInitializer;
-#endif
     int mAlgorithmId;
 
   private: // sources

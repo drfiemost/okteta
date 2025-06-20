@@ -20,18 +20,6 @@
     License along with this library. If not, see <http://www.gnu.org/licenses/>.
 */
 
-// QCA
-// need to have this first, as QCA needs QT_NO_CAST_FROM_ASCII disabled when included
-#include <config-qca2.h> //krazy:excludeall=includes
-#ifdef HAVE_QCA2
-// disable QT_NO_CAST_FROM_ASCII
-#ifdef QT_NO_CAST_FROM_ASCII
-#undef QT_NO_CAST_FROM_ASCII
-#endif
-#include <QtCrypto>
-#endif
-
-
 #include "bytearraychecksumalgorithmfactory.h"
 
 // lib
@@ -41,9 +29,6 @@
 #include "algorithm/modsum16bytearraychecksumalgorithm.h"
 #include "algorithm/modsum32bytearraychecksumalgorithm.h"
 #include "algorithm/modsum64bytearraychecksumalgorithm.h"
-#ifdef HAVE_QCA2
-#include "algorithm/qca2bytearraychecksumalgorithm.h"
-#endif
 // NEWCHECKSUM(start)
 // Here add the name of your header file of your checksum algorithm,
 // e.g.
@@ -52,14 +37,6 @@
 // KDE
 #include <KLocale>
 
-
-#ifdef HAVE_QCA2
-static inline void addQca2Algorithm( QList<AbstractByteArrayChecksumAlgorithm*>& algorithmList, const QString& name, const char* type )
-{
-    if( QCA::isSupported(type) )
-        algorithmList << new Qca2ByteArrayChecksumAlgorithm( name, QString::fromLatin1(type) );
-}
-#endif
 
 QList<AbstractByteArrayChecksumAlgorithm*> ByteArrayChecksumAlgorithmFactory::createAlgorithms()
 {
@@ -78,20 +55,6 @@ QList<AbstractByteArrayChecksumAlgorithm*> ByteArrayChecksumAlgorithmFactory::cr
 //     result
 //         << new MyByteArrayChecksumAlgorithm();
 // NEWCHECKSUM(end)
-
-#ifdef HAVE_QCA2
-    addQca2Algorithm( result, i18nc( "name of the hash algorithm", "SHA-0"),     "sha0" );
-    addQca2Algorithm( result, i18nc( "name of the hash algorithm", "SHA-1"),     "sha1" );
-    addQca2Algorithm( result, i18nc( "name of the hash algorithm", "MD2"),       "md2" );
-    addQca2Algorithm( result, i18nc( "name of the hash algorithm", "MD4"),       "md4" );
-    addQca2Algorithm( result, i18nc( "name of the hash algorithm", "MD5"),       "md5" );
-    addQca2Algorithm( result, i18nc( "name of the hash algorithm", "RIPEMD160"), "ripemd160" );
-    addQca2Algorithm( result, i18nc( "name of the hash algorithm", "SHA-224"),   "sha224" );
-    addQca2Algorithm( result, i18nc( "name of the hash algorithm", "SHA-256"),   "sha256" );
-    addQca2Algorithm( result, i18nc( "name of the hash algorithm", "SHA-384"),   "sha384" );
-    addQca2Algorithm( result, i18nc( "name of the hash algorithm", "SHA-512"),   "sha512" );
-    addQca2Algorithm( result, i18nc( "name of the hash algorithm", "Whirlpool"), "whirlpool" );
-#endif
 
     return result;
 }

@@ -20,17 +20,6 @@
     License along with this library. If not, see <http://www.gnu.org/licenses/>.
 */
 
-// QCA
-// need to have this first, as QCA needs QT_NO_CAST_FROM_ASCII disabled when included
-#include <config-qca2.h> //krazy:excludeall=includes
-#ifdef HAVE_QCA2
-// disable QT_NO_CAST_FROM_ASCII
-#ifdef QT_NO_CAST_FROM_ASCII
-#undef QT_NO_CAST_FROM_ASCII
-#endif
-#include <QtCrypto>
-#endif
-
 #include "checksumtool.h"
 
 // lib
@@ -64,12 +53,6 @@ ChecksumTool::ChecksumTool()
     mSourceByteArrayModel( 0 )
 {
     setObjectName( QLatin1String( "Checksum" ) );
-
-// TODO: find a better place to do and store the initialization
-#ifdef HAVE_QCA2
-    mQcaInitializer = new QCA::Initializer( QCA::Practical, 64 );
-kDebug()<< QCA::supportedFeatures();//Hash::supportedTypes();
-#endif
 
     mAlgorithmList = ByteArrayChecksumAlgorithmFactory::createAlgorithms();
 }
@@ -203,9 +186,6 @@ void ChecksumTool::onSourceDestroyed()
 ChecksumTool::~ChecksumTool()
 {
     qDeleteAll( mAlgorithmList );
-#ifdef HAVE_QCA2
-    delete mQcaInitializer;
-#endif
 }
 
 }
